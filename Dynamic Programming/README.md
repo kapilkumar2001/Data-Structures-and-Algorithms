@@ -1,1 +1,2 @@
-# Dynamic Programming
+# Data Structures Series
+## Dynamic Programming

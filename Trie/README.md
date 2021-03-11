@@ -1,1 +1,2 @@
-# Trie
+# Data Structures Series
+## Trie

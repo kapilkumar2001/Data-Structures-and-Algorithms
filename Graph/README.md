@@ -1,1 +1,2 @@
-# Graph
+# Data Structures Series
+## Graph

@@ -1,1 +1,2 @@
-# Greedy Algorithm
+# Data Structures Series
+## Greedy Algorithm

@@ -1,1 +1,3 @@
-# Stacks and Queues
+# Data Structures Series
+## Stacks and Queues
+

@@ -1,2 +1,3 @@
-# Heap
+# Data Structures Series
+## Heap
 

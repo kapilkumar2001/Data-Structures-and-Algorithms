@@ -1,3 +1,3 @@
 # Data Structures Series
-## BackTracking
+## Bit Manipulation
 

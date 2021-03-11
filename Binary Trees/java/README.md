@@ -1,3 +1,2 @@
 # Data Structures Series
-## BackTracking
-
+## Binary Trees
