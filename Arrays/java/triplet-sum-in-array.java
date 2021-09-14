@@ -1,37 +1,36 @@
-// Given an array arr of size N and an integer X. Find if there's a triplet in the array which sums up to the given integer X.
+// Triplet Sum in Array 
+// Given an array arr of size n and an integer X. Find if there's a triplet in the array which sums up to the given integer X.
 
 
 
-import java.util.*;
-import java.io.*;
-import java.lang.*;
 
-class Sorting
-{
-    public static void main (String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int t = Integer.parseInt(br.readLine().trim()); 
-		while(t-->0){
-		    String inputLine[] = br.readLine().trim().split(" ");
-		    int n = Integer.parseInt(inputLine[0]);
-		    int x = Integer.parseInt(inputLine[1]);
-		    int arr[] = new int[n];
-		    inputLine = br.readLine().trim().split(" ");
-		    for(int i=0; i<n; i++){
-		        arr[i] = Integer.parseInt(inputLine[i]);
-		    }
-		    System.out.println(new TripletSum().find3Numbers(arr, n, x));
-		}
-	}
-}
+// Approach -1 ( Time Complexity - O(n3) )
 
 class TripletSum
 {
-    
-    
-    public static int find3Numbers(int a[], int n, int x) { 
-    
-        
+    public static int find3Numbers(int a[], int n, int x) {        
+        for(int i=0;i<n-2;i++)
+        {
+            for(int j=i+1;j<n-1;j++)
+            {
+                for(int k=j+1;k<n;k++)
+                {
+                    if(a[i]+a[j]+a[k]==x)
+                    return 1;
+                }
+            }
+        }
+        return 0;
+    }
+}
+
+
+
+// Approach - 2 ( Time Complexity - O(n2) ) 
+
+class TripletSum
+{
+    public static int find3Numbers(int a[], int n, int x) {        
         for(int i=0;i<n-2;i++)
         {
             HashSet<Integer> hs = new HashSet<Integer>();
@@ -46,7 +45,7 @@ class TripletSum
             }
         }
         return 0;
-    
     }
 }
+
 
