@@ -1,107 +1,53 @@
-import java.util.LinkedList; 
-import java.util.Queue; 
-import java.io.*;
 import java.util.*;
-import java.lang.*; 
+import java.io.*;
 
-class Node{
-    int data;
+class Node {
     Node left;
     Node right;
-    Node(int data){
+    int data;
+    
+    Node(int data) {
         this.data = data;
-        left=null;
-        right=null;
+        left = null;
+        right = null;
     }
 }
 
-class GFG {
-    
-    static Node buildTree(String str){
-        
-        if(str.length()==0 || str.charAt(0)=='N'){
-            return null;
+class Main {
+
+    public static int height(Node root) {
+        if(root == null) {
+            return -1;
         }
-        
-        String ip[] = str.split(" ");
-        
-        Node root = new Node(Integer.parseInt(ip[0]));
-        
-        Queue<Node> queue = new LinkedList<>(); 
-        
-        queue.add(root);
-        
-        int i = 1;
-        while(queue.size()>0 && i < ip.length) {
-            
-            Node currNode = queue.peek();
-            queue.remove();
-                
-            String currVal = ip[i];
-                
-            if(!currVal.equals("N")) {
-                    
-                currNode.left = new Node(Integer.parseInt(currVal));
-                
-                queue.add(currNode.left);
+        return Math.max(height(root.left), height(root.right)) + 1;
+    }
+
+    public static Node insert(Node root, int data) {
+        if(root == null) {
+            return new Node(data);
+        } else {
+            Node cur;
+            if(data <= root.data) {
+                cur = insert(root.left, data);
+                root.left = cur;
+            } else {
+                cur = insert(root.right, data);
+                root.right = cur;
             }
-                
-            i++;
-            if(i >= ip.length)
-                break;
-                
-            currVal = ip[i];
-                
-            if(!currVal.equals("N")) {
-                    
-                currNode.right = new Node(Integer.parseInt(currVal));
-                    
-                queue.add(currNode.right);
-            }
-            i++;
-        }
-        
-        return root;
-    }
-    static void printInorder(Node root){
-        if(root == null)
-            return;
-            
-        printInorder(root.left);
-        System.out.print(root.data+" ");
-        
-        printInorder(root.right);
-    }
-    
-	public static void main (String[] args) throws IOException{
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int t=Integer.parseInt(br.readLine());
-
-        while(t > 0){
-            String s = br.readLine();
-	    	Node root = buildTree(s);
-	    	
-            Solution ob = new Solution();
-    		System.out.println(ob.height(root));
-            t--;
+            return root;
         }
     }
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int t = scan.nextInt();
+        Node root = null;
+        while(t-- > 0) {
+            int data = scan.nextInt();
+            root = insert(root, data);
+        }
+        scan.close();
+        int height = height(root);
+        System.out.println(height);
+    }   
 }
-
-
-class Solution {
-    int height(Node node) {
-        if(node==null)
-        return 0;
-        
-        int lheight = height(node.left);
-        int rheight = height(node.right);
-        
-        if(lheight>rheight)
-        return lheight+1;
-        
-        else
-        return rheight+1;
-    }
-}
-
